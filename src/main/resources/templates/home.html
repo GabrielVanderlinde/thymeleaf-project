@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="pt-br">
-
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +10,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container">
-        <a class="navbar-brand" href="home.html">Template</a>
+        <a class="navbar-brand" th:href="@{/}">Template</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
                 aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menu">
@@ -21,10 +20,10 @@
         <div class="collapse navbar-collapse" id="menuPrincipal">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">Sair</a>
+                    <a class="nav-link" th:href="@{/logout}">Sair</a>
                 </li>
             </ul>
         </div>
@@ -35,8 +34,8 @@
     <div class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-4">
             <h1 class="display-5 fw-bold">Bem-vindo ao sistema</h1>
-            <p class="col-md-8 fs-4">Esta é uma página inicial simples feita com HTML puro e Bootstrap.</p>
-            <a class="btn btn-primary btn-lg" href="login.html">Voltar para o login</a>
+            <p class="col-md-8 fs-4">Utilizador conectado: <strong th:text="${usuario}"></strong></p>
+            <a class="btn btn-primary btn-lg" th:href="@{/logout}">Sair do Sistema</a>
         </div>
     </div>
 
