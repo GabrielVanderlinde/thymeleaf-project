@@ -1,4 +1,4 @@
-package com.senai.thymeleaf.controller;
+package com.senai.thymeleaf.controllers;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -7,7 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class HomeController {
+public class LoginController {
+
+    // Injeção de dependência do Service oficial
+    public HomeController
 
     @GetMapping("/")
     public String inicio(HttpSession session, Model model) {
