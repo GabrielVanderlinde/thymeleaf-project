@@ -1,0 +1,1 @@
+INSERT INTO tb_usuarios (email, senha) VALUES ('admin@senai.com', '123');
