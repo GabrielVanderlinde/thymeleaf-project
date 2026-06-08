@@ -1,33 +1,12 @@
-package com.senai.thymeleaf.entities;
+package com.senai.thymeleaf.dtos;
 
-import jakarta.persistence.*;
+public class UsuarioDto {
 
-@Entity
-@Table(name = "usuario")
-public class UsuarioEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "nome")
     private String nome;
-
-    @Column(name = "email", unique = true)
     private String email;
-
-    @Column(name = "senha")
     private String senha;
 
-    public UsuarioEntity() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public UsuarioDto() {
     }
 
     public String getNome() {

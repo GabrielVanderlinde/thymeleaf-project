@@ -1,1 +1,4 @@
-INSERT INTO tb_usuarios (email, senha) VALUES ('admin@senai.com', '123');
+USE logindb;
+
+INSERT INTO usuario (nome, email, senha)
+VALUES ('Admin', 'admin@senai.com', '123');
