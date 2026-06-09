@@ -16,7 +16,6 @@ public class UsuarioController {
         this.service = service;
     }
 
-    // Processa o formulário de login (POST = enviar os dados)
     @PostMapping("/login")
     public String realizarLogin(String email, String senha,
                                 Model model, RedirectAttributes redirectAttributes) {
@@ -27,14 +26,19 @@ public class UsuarioController {
         usuarioDto.setEmail(email);
         usuarioDto.setSenha(senha);
 
-        UsuarioDto retorno = service.realizarLogin(usuarioDto);
+        UsuarioDto usuarioDtoRetorno = service.realizarLogin(usuarioDto);
 
-        if (retorno != null) {
-            redirectAttributes.addFlashAttribute("usuario", "Bem-vindo, " + retorno.getNome());
+        if (usuarioDtoRetorno.getNome() != null) {
+
+            redirectAttributes.addFlashAttribute("usuario", " Bem-vindo, " + usuarioDtoRetorno.getNome());
+
             return "redirect:/home";
         }
 
-        model.addAttribute("erro", "E-mail ou senha inválidos.");
+        model.addAttribute("erro", "E-mail ou senha invalidos.");
+
         return "login";
+
     }
+
 }
