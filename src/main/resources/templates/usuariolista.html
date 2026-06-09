@@ -22,7 +22,7 @@
                     <a class="nav-link" th:href="@{/home}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/usuarios}">Usuarios</a>
+                    <a aria-current="page" class="nav-link active" th:href="@{/usuariolista}">Usuarios</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/login}">Sair</a>
@@ -39,7 +39,7 @@
             <p class="text-secondary mb-0">Lista de usuarios cadastrados no sistema.</p>
         </div>
 
-        <a class="btn btn-primary" th:href="@{/usuarios/inserir}">Novo usuario</a>
+        <a class="btn btn-primary" th:href="@{/usuarioinserir}">Novo usuario</a>
     </div>
 
     <div class="alert alert-success" role="alert" th:if="${mensagem}" th:text="${mensagem}">
