@@ -18,18 +18,18 @@
                         E-mail ou senha invalidos.
                     </div>
 
-                    <form th:action="@{/login}" method="post">
+                    <form method="post" th:action="@{/login}">
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">E-mail</label>
+                            <label class="form-label" for="email">E-mail</label>
                             <input class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required
                                    th:value="${email}" type="email">
                         </div>
 
                         <div class="mb-3">
-                            <label for="senha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="senha" name="senha"
-                                   placeholder="Digite sua senha" required>
+                            <label class="form-label" for="senha">Senha</label>
+                            <input class="form-control" id="senha" name="senha" placeholder="Digite sua senha"
+                                   required type="password">
                         </div>
 
                         <button class="btn btn-primary w-100" type="submit">Entrar</button>
