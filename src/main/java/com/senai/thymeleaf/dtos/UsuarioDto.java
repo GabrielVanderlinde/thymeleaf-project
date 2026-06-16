@@ -1,25 +1,22 @@
-package com.senai.thymeleaf.entities;
+package com.senai.thymeleaf.dtos;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "usuario")
-public class UsuarioEntity {
+public class UsuarioDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome")
+    @NotBlank(message = "Nome não pode estar em branco ou nulo")
     private String nome;
 
-    @Column(name = "email", unique = true)
+    @NotBlank(message = "Email não pode estar em branco ou nulo")
+    @Email(message = "Email inválido")
     private String email;
 
-    @Column(name = "senha")
     private String senha;
 
-    public UsuarioEntity() {
+    public UsuarioDto() {
     }
 
     public Long getId() {
