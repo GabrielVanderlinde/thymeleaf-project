@@ -19,7 +19,6 @@ public class UsuarioService {
     }
 
     public UsuarioDto realizarLogin(UsuarioDto usuarioDto) {
-
         Optional<UsuarioEntity> usuarioOP = repository.findByEmailAndSenha(usuarioDto.getEmail(), usuarioDto.getSenha());
 
         UsuarioDto usuarioDtoRetorno = new UsuarioDto();
@@ -33,16 +32,51 @@ public class UsuarioService {
     }
 
     public List<UsuarioDto> obterListaUsuarios() {
-
-        List<UsuarioDto> listaDto = new ArrayList<>();
-
         List<UsuarioEntity> listaUsuario = repository.findAll();
+        List<UsuarioDto> listaDtos = new ArrayList<>();
 
-        for (UsuarioEntity usuarioEntity : listaUsuario) {
-            listaDto.add(converterEntityParaDto(usuarioEntity));
+        for (UsuarioEntity usuario : listaUsuario) {
+            listaDtos.add(converterEntityParaDto(usuario));
         }
 
-        return listaDto;
+        return listaDtos;
+    }
+
+    public void usuarioInserir(UsuarioDto usuarioDto) {
+        repository.save(converterDtoParaEntity(usuarioDto));
+    }
+
+    public UsuarioDto obterUsuarioPorId(Long id) {
+        UsuarioDto usuarioDto = new UsuarioDto();
+
+        Optional<UsuarioEntity> usuarioOP = repository.findById(id);
+
+        if (usuarioOP.isPresent()) {
+            usuarioDto = converterEntityParaDto(usuarioOP.get());
+        }
+
+        return usuarioDto;
+    }
+
+    public void atualizarUsuario(UsuarioDto usuarioDto) {
+        Optional<UsuarioEntity> usuarioOP = repository.findById(usuarioDto.getId());
+
+        if (usuarioOP.isPresent()) {
+            UsuarioEntity usuario = usuarioOP.get();
+
+            usuario.setNome(usuarioDto.getNome());
+            usuario.setEmail(usuarioDto.getEmail());
+
+            if (usuarioDto.getSenha() != null && !usuarioDto.getSenha().isEmpty()) {
+                usuario.setSenha(usuarioDto.getSenha());
+            }
+
+            repository.save(usuario);
+        }
+    }
+
+    public void excluir(Long id) {
+        repository.deleteById(id);
     }
 
     private UsuarioDto converterEntityParaDto(UsuarioEntity usuario) {
@@ -50,21 +84,15 @@ public class UsuarioService {
         usuarioDto.setId(usuario.getId());
         usuarioDto.setNome(usuario.getNome());
         usuarioDto.setEmail(usuario.getEmail());
-
         return usuarioDto;
     }
 
     private UsuarioEntity converterDtoParaEntity(UsuarioDto usuarioDto) {
         UsuarioEntity usuario = new UsuarioEntity();
-        usuario.setId((usuarioDto.getId()));
+        usuario.setId(usuarioDto.getId());
         usuario.setNome(usuarioDto.getNome());
         usuario.setEmail(usuarioDto.getEmail());
         usuario.setSenha(usuarioDto.getSenha());
-
         return usuario;
-    }
-
-    public void usuarioInserir(UsuarioDto usuarioDto) {
-        repository.save(converterDtoParaEntity(usuarioDto));
     }
 }

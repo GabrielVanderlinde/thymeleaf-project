@@ -1,11 +1,17 @@
 package com.senai.thymeleaf.dtos;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class UsuarioDto {
 
     private Long id;
 
+    @NotBlank(message = "Nome não pode estar em branco ou nulo")
     private String nome;
 
+    @NotBlank(message = "Email não pode estar em branco ou nulo")
+    @Email(message = "Email inválido")
     private String email;
 
     private String senha;
